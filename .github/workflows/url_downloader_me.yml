@@ -96,9 +96,9 @@ jobs:
           ARCHIVE_BASE="${BASENAME%.*}_$(date +%Y%m%d_%H%M%S)"
 
           if [ -n "$PASS" ]; then
-            7z a -p"$PASS" -mhe=on -mx=3 -v${THRESH_MB}m "${ARCHIVE_BASE}.7z" "$BASENAME"
+            7z a -mx=9 -m0=lzma2 -ms=on -mhe=on -v${THRESH_MB}m "${ARCHIVE_BASE}.7z" "$BASENAME"
           else
-            7z a -mx=3 -v${THRESH_MB}m "${ARCHIVE_BASE}.7z" "$BASENAME"
+            7z a -mx=9 -m0=lzma2 -v${THRESH_MB}m "${ARCHIVE_BASE}.7z" "$BASENAME"
           fi
 
           if [ -f "${ARCHIVE_BASE}.7z.001" ] && [ ! -f "${ARCHIVE_BASE}.7z.002" ]; then
